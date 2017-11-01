@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.appsys.dao.BackendUserMapper">
+	<select id="findLoginUser" resultType="BackendUser" parameterType="String">
+		select u.*,
+			(select valueName from data_dictionary where u.userType=valueId and typeCode='USER_TYPE') as userTypeName 
+		from backend_user u  where u.userCode = #{userCode}
+	</select>
+</mapper>
